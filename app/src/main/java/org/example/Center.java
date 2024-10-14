@@ -30,4 +30,24 @@ public class Center {
     nullable =  false)
     private User adminstrateur;
     
+    public Center() {
+
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getAdresse() {
+        return this.adresse;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getVille() {
+        return this.ville;
+    }
+
 }
