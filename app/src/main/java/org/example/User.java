@@ -8,7 +8,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="user")
+@Table(name="t_user")
 public class User {
     @Id
     private Integer id;
@@ -21,12 +21,26 @@ public class User {
     private String adresse;
     private String ville;
 
-    @OneToMany(mappedBy = "timeslot")
+    @OneToMany(mappedBy = "patient")
     private List<Timeslot> creneaux;
 
     public User() {
 
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
+    public String getNom() {
+        return this.nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getPrenom() {
+        return this.prenom;
+    } 
 }

@@ -8,7 +8,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "timeslot")
+@Table(name = "t_timeslot")
 public class Timeslot {
     @Id
     private Integer id;
