@@ -24,7 +24,8 @@ dependencies {
     // This dependency is used by the application.
     implementation libs.guava
     implementation 'org.springframework:spring-core:6.1.5'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.3.4'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.3.4'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
