@@ -42,5 +42,46 @@ public class User {
 
     public String getPrenom() {
         return this.prenom;
-    } 
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return this.role;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getTelephone() {
+        return this.telephone;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getAdresse() {
+        return this.adresse;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getVille() {
+        return this.ville;
+    }
+
 }
