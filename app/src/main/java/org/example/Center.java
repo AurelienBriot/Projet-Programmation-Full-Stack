@@ -11,7 +11,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="center")
+@Table(name="t_center")
 public class Center {
     @Id
     private Integer id;
@@ -21,7 +21,7 @@ public class Center {
     @OneToMany
     private List<User> medecins;
 
-    @OneToMany(mappedBy = "timeslot")
+    @OneToMany(mappedBy = "centre")
     private List<Timeslot> creneaux;
 
     @OneToOne
