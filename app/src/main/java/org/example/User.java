@@ -28,6 +28,13 @@ public class User {
 
     }
 
+    public User(Integer id, String nom, String prenom, String email) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+    }
+
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -84,4 +91,11 @@ public class User {
         return this.ville;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
 }
