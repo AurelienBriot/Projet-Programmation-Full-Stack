@@ -34,6 +34,14 @@ public class Center {
 
     }
 
+    public Center(Integer id, String adresse, String ville, List<User> medecins, List<Timeslot> creneaux) {
+        this.id = id;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.medecins = medecins;
+        this.creneaux = creneaux;
+    }
+
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
@@ -48,6 +56,14 @@ public class Center {
 
     public String getVille() {
         return this.ville;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return this.id;
     }
 
 }
