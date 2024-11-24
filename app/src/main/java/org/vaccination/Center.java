@@ -1,4 +1,4 @@
-package org.example;
+package org.vaccination;
 
 import java.util.List;
 
@@ -81,7 +81,7 @@ public class Center {
     }
 
     public void removeMedecin(Integer userId) {
-        this.medecins.removeIf(m -> m.getId().equals(userId));    
+        this.medecins.removeIf(m -> m.getId().equals(id));    
     }
 
 }
