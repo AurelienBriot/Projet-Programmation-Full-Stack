@@ -25,21 +25,19 @@ public class Center {
     private List<Timeslot> creneaux;
 
     @OneToOne
-    @JoinColumn(name = "id_administrateur",
-    foreignKey = @ForeignKey(name="administrateur_fk"),
-    nullable =  false)
     private User adminstrateur;
     
     public Center() {
 
     }
 
-    public Center(Integer id, String adresse, String ville, List<User> medecins, List<Timeslot> creneaux) {
+    public Center(Integer id, String adresse, String ville, List<User> medecins, List<Timeslot> creneaux, User admin) {
         this.id = id;
         this.adresse = adresse;
         this.ville = ville;
         this.medecins = medecins;
         this.creneaux = creneaux;
+        this.adminstrateur = admin;
     }
 
     public void setAdresse(String adresse) {
@@ -64,6 +62,14 @@ public class Center {
 
     public Integer getId() {
         return this.id;
+    }
+
+    public void setAdministrateur(User admin) {
+        this.adminstrateur = admin;
+    }
+
+    public User getAdministrateur() {
+        return this.adminstrateur;
     }
 
 }
