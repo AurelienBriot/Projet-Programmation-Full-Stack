@@ -72,4 +72,16 @@ public class Center {
         return this.adminstrateur;
     }
 
+    public List<User> getMedecins() {
+        return this.medecins;
+    }
+
+    public void addMedecins(User m) {
+        this.medecins.add(m);
+    }
+
+    public void removeMedecin(Integer userId) {
+        this.medecins.removeIf(m -> m.getId().equals(userId));    
+    }
+
 }

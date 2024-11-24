@@ -56,7 +56,6 @@ public class CenterRestController {
     @PostMapping(path = "admin/centre/{id}/admin")
     public void updateAdmin(@PathVariable("id") Integer id, @RequestBody User user) throws URISyntaxException {
         centerService.addAdmin(id, user);
-        //ResponseEntity.created(new URI("public/centre/"+ u.getId())).build();
     }
 
     @DeleteMapping(path = "/admin/centre/{id}/admin")
@@ -64,5 +63,24 @@ public class CenterRestController {
         centerService.deleteAdmin(id);
     }
 
+    @PostMapping(path = "admin/centre/{id}/adresse")
+    public void updateAdresse(@PathVariable("id") Integer id, @RequestBody String adresse) throws URISyntaxException {
+        centerService.updateAdresse(id, adresse);
+    }
+
+    @PostMapping(path = "admin/centre/{id}/ville")
+    public void updateVille(@PathVariable("id") Integer id, @RequestBody String ville) throws URISyntaxException {
+        centerService.updateVille(id, ville);
+    }
+
+    @PostMapping(path = "admin/centre/{id}/medecin")
+    public void addMedecin(@PathVariable("id") Integer id, @RequestBody User medecin) throws URISyntaxException {
+        centerService.addMedecin(id, medecin);
+    }
+
+    @DeleteMapping(path = "admin/centre/{id}/medecin/{userId}")
+    public void removeMedecin(@PathVariable("id") Integer id, @PathVariable("userId") Integer userId) throws URISyntaxException {
+        centerService.removeMedecin(id, userId);
+    }
 
 }

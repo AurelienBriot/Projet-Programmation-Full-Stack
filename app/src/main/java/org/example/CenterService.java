@@ -37,7 +37,7 @@ public class CenterService {
     }
 
     public void delete(Integer id) {
-        this. centers.removeIf(c->c.getId().equals(id));    
+        this.centers.removeIf(c->c.getId().equals(id));    
 
     }
 
@@ -56,4 +56,33 @@ public class CenterService {
         .ifPresent(c -> c.setAdministrateur(null));    
 
     }
+
+    public void updateAdresse(Integer id, String adresse) {
+        this.centers.stream()
+        .filter(c -> c.getId().equals(id))
+        .findFirst()
+        .ifPresent(c -> c.setAdresse(adresse));
+    }
+
+    public void updateVille(Integer id, String ville) {
+        this.centers.stream()
+        .filter(c -> c.getId().equals(id))
+        .findFirst()
+        .ifPresent(c -> c.setVille(ville));
+    }
+
+    public void addMedecin(Integer id, User m) {
+        this.centers.stream()
+        .filter(c -> c.getId().equals(id))
+        .findFirst()
+        .ifPresent(c -> c.addMedecins(m));
+    }
+
+    public void removeMedecin(Integer id, Integer userId) {
+        this.centers.stream()
+        .filter(c -> c.getId().equals(id))
+        .findFirst()
+        .ifPresent(c -> c.removeMedecin(userId));    
+    }
+
 }
