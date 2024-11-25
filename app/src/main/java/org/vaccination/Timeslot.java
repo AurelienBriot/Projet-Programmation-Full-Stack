@@ -39,6 +39,22 @@ public class Timeslot {
     public Integer getId() {
         return this.id;
     }
+
+    public void setCentre(Center c) {
+        this.centre = c;
+    }
+
+    public Center getCentre() {
+        return this.centre;
+    }
+
+    public void setPatient(User p) {
+        this.patient = p;
+    }
+
+    public User getPatient() {
+        return this.patient;
+    }
     
     public void setDate(Date date) {
         this.date = date;
