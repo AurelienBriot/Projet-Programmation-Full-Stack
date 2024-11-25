@@ -18,4 +18,11 @@ public class TimeslotService {
     public List<Timeslot> findAll() {
         return this.timeslots.stream().toList();
     }
+
+    public Timeslot findOneById(Integer id) throws Exception {
+        return this.timeslots.stream()
+        .filter(t->t.getId().equals(id))
+        .findFirst()
+        .orElseThrow(Exception::new);
+    }
 }

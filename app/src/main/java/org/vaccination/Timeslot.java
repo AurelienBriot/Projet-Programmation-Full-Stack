@@ -32,6 +32,14 @@ public class Timeslot {
         this.estTermine = termine;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+    
     public void setDate(Date date) {
         this.date = date;
     }
