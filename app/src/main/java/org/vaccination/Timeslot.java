@@ -23,8 +23,13 @@ public class Timeslot {
     private Boolean estReserve;
     private Boolean estTermine;
 
-    public Timeslot() {
-
+    public Timeslot(Integer id, Center centre, User patient, Date date, Boolean reserve, Boolean termine) {
+        this.id = id;
+        this.centre = centre;
+        this.patient = patient;
+        this.date = date;
+        this.estReserve = reserve;
+        this.estTermine = termine;
     }
 
     public void setDate(Date date) {

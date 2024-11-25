@@ -10,10 +10,10 @@ public class CenterService {
     private List<Center> centers = new ArrayList<Center>();
     
     public CenterService() {
-        this.centers.add(new Center(1, "Rue Jean Lamour", "Vandoeuvre-lès-Nancy", new ArrayList<User>(), new ArrayList<Timeslot>(), new User(1, "test", "test", "mail")));
-        this.centers.add(new Center(2, "Rue Jean Lamour", "Nancy", new ArrayList<User>(), new ArrayList<Timeslot>(), new User(1, "test", "test", "mail")));
-        this.centers.add(new Center(3, "Rue Jean Lamodsfdsur", "Nancy", new ArrayList<User>(), new ArrayList<Timeslot>(), new User(1, "test", "test", "mail")));
-        this.centers.add(new Center(4, "Rue Jean Lamouffr", "Vandoeuvre-lès-Nancy", new ArrayList<User>(), new ArrayList<Timeslot>(), new User(1, "test", "test", "mail")));
+        this.centers.add(new Center(1, "Centre 1", "Rue Jean Lamour", "Vandoeuvre-lès-Nancy", new ArrayList<User>(), new ArrayList<Timeslot>(), new User(1, "test", "test", "mail")));
+        this.centers.add(new Center(2, "Centre 2", "Rue Jean Lamour", "Nancy", new ArrayList<User>(), new ArrayList<Timeslot>(), new User(1, "test", "test", "mail")));
+        this.centers.add(new Center(3, "Centre 3", "Rue Jean Lamodsfdsur", "Nancy", new ArrayList<User>(), new ArrayList<Timeslot>(), new User(1, "test", "test", "mail")));
+        this.centers.add(new Center(4, "Centre 4", "Rue Jean Lamouffr", "Vandoeuvre-lès-Nancy", new ArrayList<User>(), new ArrayList<Timeslot>(), new User(1, "test", "test", "mail")));
 
     }
 
