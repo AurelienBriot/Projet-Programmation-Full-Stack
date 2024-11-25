@@ -24,61 +24,61 @@ public class CenterRestController {
 
     }
 
-    @GetMapping(path = "/public/centres", produces = {"application/json"})
+    @GetMapping(path = "/api/public/centres", produces = {"application/json"})
     public List<Center> getAll() throws Exception {
         return centerService.findAll();
     }
 
-    @GetMapping(path = "/public/centres/{ville}", produces = {"application/json"})
+    @GetMapping(path = "/api/public/centres/{ville}", produces = {"application/json"})
     public List<Center> getAllByCity(@PathVariable("ville") String ville) throws Exception {
         return centerService.findAllByCity(ville);
     }
 
 
-    @GetMapping(path = "public/centre/{id}", produces = {"application/json"})
+    @GetMapping(path = "/api/public/centre/{id}", produces = {"application/json"})
     public Center getOneById(@PathVariable("id") Integer id) throws Exception {
         Center test = centerService.findOneById(id);
         System.out.println(test);
         return centerService.findOneById(id);
     }
 
-    @PostMapping(path = "admin/centre")
+    @PostMapping(path = "/apiadmin/centre")
     public void create(@RequestBody Center c) throws URISyntaxException {
         centerService.create(c);
         ResponseEntity.created(new URI("public/centre/"+ c.getId())).build();
     }
 
-    @DeleteMapping(path = "/admin/centre/{id}")
+    @DeleteMapping(path = "/api/admin/centre/{id}")
     public void delete(@PathVariable("id") Integer id) {
         centerService.delete(id);
     }
 
-    @PostMapping(path = "admin/centre/{id}/admin")
+    @PostMapping(path = "/apiadmin/centre/{id}/admin")
     public void updateAdmin(@PathVariable("id") Integer id, @RequestBody User user) throws URISyntaxException {
         centerService.addAdmin(id, user);
     }
 
-    @DeleteMapping(path = "/admin/centre/{id}/admin")
+    @DeleteMapping(path = "/api/admin/centre/{id}/admin")
     public void deleteAdmin(@PathVariable("id") Integer id) {
         centerService.deleteAdmin(id);
     }
 
-    @PostMapping(path = "admin/centre/{id}/adresse")
+    @PostMapping(path = "/api/admin/centre/{id}/adresse")
     public void updateAdresse(@PathVariable("id") Integer id, @RequestBody String adresse) throws URISyntaxException {
         centerService.updateAdresse(id, adresse);
     }
 
-    @PostMapping(path = "admin/centre/{id}/ville")
+    @PostMapping(path = "/api/admin/centre/{id}/ville")
     public void updateVille(@PathVariable("id") Integer id, @RequestBody String ville) throws URISyntaxException {
         centerService.updateVille(id, ville);
     }
 
-    @PostMapping(path = "admin/centre/{id}/medecin")
+    @PostMapping(path = "/api/admin/centre/{id}/medecin")
     public void addMedecin(@PathVariable("id") Integer id, @RequestBody User medecin) throws URISyntaxException {
         centerService.addMedecin(id, medecin);
     }
 
-    @DeleteMapping(path = "admin/centre/{id}/medecin/{userId}")
+    @DeleteMapping(path = "/api/admin/centre/{id}/medecin/{userId}")
     public void removeMedecin(@PathVariable("id") Integer id, @PathVariable("userId") Integer userId) throws URISyntaxException {
         centerService.removeMedecin(id, userId);
     }
