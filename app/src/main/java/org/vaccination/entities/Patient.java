@@ -1,38 +1,33 @@
-package org.vaccination;
+package org.vaccination.entities;
 
 import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="t_user")
-public class User {
+@Table(name="t_patient")
+public class Patient {
     @Id
     private Integer id;
 
     private String nom;
     private String prenom;
-    private String role;
     private String email;
     private String telephone;
     private String adresse;
     private String ville;
 
+    private Boolean estVaccine;
+
     @OneToMany(mappedBy = "patient")
-    private List<Timeslot> creneaux;
+    private List<Creneau> creneaux;
 
-    public User() {
+    public Patient() {
 
-    }
-
-    public User(Integer id, String nom, String prenom, String email) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
     }
 
     public void setNom(String nom) {
@@ -49,14 +44,6 @@ public class User {
 
     public String getPrenom() {
         return this.prenom;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getRole() {
-        return this.role;
     }
 
     public void setEmail(String email) {
@@ -97,5 +84,13 @@ public class User {
 
     public Integer getId() {
         return this.id;
+    }
+
+    public void setEstVaccine(Boolean estVaccine) {
+        this.estVaccine = estVaccine;
+    }
+
+    public Boolean getEstVaccine() {
+        return this.estVaccine;
     }
 }

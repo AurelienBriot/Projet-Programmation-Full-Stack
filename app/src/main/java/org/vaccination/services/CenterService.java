@@ -1,10 +1,12 @@
-package org.vaccination;
+package org.vaccination.services;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.vaccination.entities.Centre;
+import org.vaccination.repositories.CenterRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -17,11 +19,11 @@ public class CenterService {
 
     }
 
-    public List<Center> findAll() throws Exception {
+    public List<Centre> findAll() throws Exception {
         return centerRepository.findAll();
     }
 
-    public List<Center> findAllByVille(String ville) throws Exception {
+    public List<Centre> findAllByVille(String ville) throws Exception {
         if(ville == null || ville.isEmpty()) {
             return centerRepository.findAll();
         }
@@ -31,16 +33,16 @@ public class CenterService {
         
     }
 
-    public Center findOneById(Integer id) throws Exception {
+    public Centre findOneById(Integer id) throws Exception {
         return centerRepository.findOneById(id); 
     }
 
-    public Center create(Center center) {
+    public Centre create(Centre center) {
         return centerRepository.save(center);
     }
 
-    public Center update(Integer id, Center centreMaj) throws Exception {
-        Center centreExistant = findOneById(id);
+    public Centre update(Integer id, Centre centreMaj) throws Exception {
+        Centre centreExistant = findOneById(id);
         if (centreExistant == null) {
             throw new Exception();
         }

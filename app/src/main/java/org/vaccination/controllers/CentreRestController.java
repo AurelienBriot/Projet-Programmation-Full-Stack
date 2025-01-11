@@ -1,4 +1,4 @@
-package org.vaccination;
+package org.vaccination.controllers;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -16,38 +16,40 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.vaccination.entities.Centre;
+import org.vaccination.services.CenterService;
 
 @RestController
-public class CenterRestController {
+public class CentreRestController {
 
     @Autowired
     private CenterService centerService;
     
-    public CenterRestController() {
+    public CentreRestController() {
 
     }
 
     @GetMapping(path = {"/api/public/centres", "/api/admin/centres"}, produces = {"application/json"})
-    public List<Center> getAll(@RequestParam(name = "ville", required = false) String ville) throws Exception {
+    public List<Centre> getAll(@RequestParam(name = "ville", required = false) String ville) throws Exception {
         return centerService.findAllByVille(ville);
     }
 
     @GetMapping(path = "/api/public/centre/{id}", produces = {"application/json"})
-    public Center getOneById(@PathVariable("id") Integer id) throws Exception {
-        Center test = centerService.findOneById(id);
+    public Centre getOneById(@PathVariable("id") Integer id) throws Exception {
+        Centre test = centerService.findOneById(id);
         System.out.println(test);
         return centerService.findOneById(id);
     }
 
     // Ajouter un centre
     @PostMapping(path = "/api/admin/centre")
-    public Center create(@RequestBody Center c) throws URISyntaxException {
+    public Centre create(@RequestBody Centre c) throws URISyntaxException {
         return centerService.create(c);
     }
 
     // Mettre à jour un centre (nom, ville, adresse)
     @PutMapping(path = "api/admin/centre/{id}")
-    public Center updateCentre(@PathVariable("id") Integer id, @RequestBody Center c) throws Exception {
+    public Centre updateCentre(@PathVariable("id") Integer id, @RequestBody Centre c) throws Exception {
         return centerService.update(id, c);
     }
     

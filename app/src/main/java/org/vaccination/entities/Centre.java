@@ -1,7 +1,10 @@
-package org.vaccination;
+package org.vaccination.entities;
 
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
+
+import ch.qos.logback.classic.pattern.Util;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +17,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="t_center")
-public class Center {
+public class Centre {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,27 +27,17 @@ public class Center {
     private String adresse;
     private String ville;
 
-    @OneToMany
-    private List<User> medecins;
+    @OneToMany(mappedBy = "centre")
+    private List<Utilisateur> medecins;
 
     @OneToMany(mappedBy = "centre")
-    private List<Timeslot> creneaux;
+    private List<Creneau> creneaux;
 
     @OneToOne
-    private User adminstrateur;
+    private Utilisateur adminstrateur;
     
-    public Center() {
+    public Centre() {
 
-    }
-
-    public Center(Integer id, String nom, String adresse, String ville, List<User> medecins, List<Timeslot> creneaux, User admin) {
-        this.id = id;
-        this.nom = nom;
-        this.adresse = adresse;
-        this.ville = ville;
-        this.medecins = medecins;
-        this.creneaux = creneaux;
-        this.adminstrateur = admin;
     }
 
     public void setNom(String nom) {
@@ -79,15 +72,15 @@ public class Center {
         return this.id;
     }
 
-    public void setAdministrateur(User admin) {
+    public void setAdministrateur(Utilisateur admin) {
         this.adminstrateur = admin;
     }
 
-    public User getAdministrateur() {
+    public Utilisateur getAdministrateur() {
         return this.adminstrateur;
     }
 
-    public List<User> getMedecins() {
+    public List<Utilisateur> getMedecins() {
         return this.medecins;
     }
 
