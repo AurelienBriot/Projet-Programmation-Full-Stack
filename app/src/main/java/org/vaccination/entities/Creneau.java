@@ -1,7 +1,5 @@
 package org.vaccination.entities;
 
-import java.sql.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "t_timeslot")
+@Table(name = "t_creneau")
 public class Creneau {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +21,7 @@ public class Creneau {
     private Centre centre;
 
     @ManyToOne
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
     private Integer jour;

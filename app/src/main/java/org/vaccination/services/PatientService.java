@@ -1,11 +1,11 @@
 package org.vaccination.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vaccination.entities.Patient;
+import org.vaccination.exceptions.PatientNotFoundException;
 import org.vaccination.repositories.PatientRepository;
 
 @Service
@@ -37,7 +37,7 @@ public class PatientService {
         }
     }
 
-    public Patient findOneById(Integer id) throws Exception {
+    public Patient findOneById(Integer id) throws PatientNotFoundException {
         return patientRepository.findOneById(id);    
     }
 
@@ -49,7 +49,7 @@ public class PatientService {
         patientRepository.deleteById(id); 
     }
 
-    public Patient validerVaccination(Integer id) {
+    public Patient validerVaccination(Integer id) throws PatientNotFoundException {
         Patient patient = patientRepository.findOneById(id);
         patient.setEstVaccine(true);
         return patientRepository.save(patient);

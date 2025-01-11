@@ -2,21 +2,18 @@ package org.vaccination.entities;
 
 import java.util.List;
 
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import ch.qos.logback.classic.pattern.Util;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="t_center")
+@Table(name="t_centre")
 public class Centre {
     
     @Id
@@ -30,6 +27,7 @@ public class Centre {
     @OneToMany(mappedBy = "centre")
     private List<Utilisateur> medecins;
 
+    @JsonIgnoreProperties("creneaux")
     @OneToMany(mappedBy = "centre")
     private List<Creneau> creneaux;
 

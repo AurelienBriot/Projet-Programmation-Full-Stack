@@ -1,13 +1,11 @@
 package org.vaccination.services;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.FlashMapManager;
 import org.vaccination.entities.Creneau;
+import org.vaccination.exceptions.CreneauNotFoundException;
 import org.vaccination.repositories.CreneauRepository;
 
 @Service
@@ -24,7 +22,7 @@ public class CreneauService {
         return creneauRepository.findAll();
     }  
 
-    public Creneau findOneById(Integer id) throws Exception {
+    public Creneau findOneById(Integer id) throws CreneauNotFoundException {
         return creneauRepository.findOneById(id);
     }
 
@@ -32,11 +30,11 @@ public class CreneauService {
         return creneauRepository.save(c);
     }
 
-    public void delete(Integer id) throws Exception {
+    public void delete(Integer id) throws CreneauNotFoundException {
         creneauRepository.deleteById(id);
     }
     
-    public Creneau validerVaccination(Integer id) {
+    public Creneau validerVaccination(Integer id) throws CreneauNotFoundException {
         Creneau creneau = creneauRepository.findOneById(id);
         creneau.setEstTermine(true);
         return creneauRepository.save(creneau);

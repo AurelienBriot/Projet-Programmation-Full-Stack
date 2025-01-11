@@ -1,14 +1,13 @@
 package org.vaccination.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vaccination.entities.Centre;
+import org.vaccination.exceptions.CentreNotFoundException;
 import org.vaccination.repositories.CenterRepository;
 
-import jakarta.transaction.Transactional;
 
 @Service
 public class CenterService {
@@ -19,11 +18,11 @@ public class CenterService {
 
     }
 
-    public List<Centre> findAll() throws Exception {
+    public List<Centre> findAll() {
         return centerRepository.findAll();
     }
 
-    public List<Centre> findAllByVille(String ville) throws Exception {
+    public List<Centre> findAllByVille(String ville) {
         if(ville == null || ville.isEmpty()) {
             return centerRepository.findAll();
         }
@@ -33,7 +32,7 @@ public class CenterService {
         
     }
 
-    public Centre findOneById(Integer id) throws Exception {
+    public Centre findOneById(Integer id) throws CentreNotFoundException {
         return centerRepository.findOneById(id); 
     }
 
@@ -41,10 +40,10 @@ public class CenterService {
         return centerRepository.save(center);
     }
 
-    public Centre update(Integer id, Centre centreMaj) throws Exception {
+    public Centre update(Integer id, Centre centreMaj) throws CentreNotFoundException {
         Centre centreExistant = findOneById(id);
         if (centreExistant == null) {
-            throw new Exception();
+            throw new CentreNotFoundException();
         }
 
         if(centreMaj.getNom() != null) {
@@ -68,7 +67,7 @@ public class CenterService {
         return centerRepository.save(centreExistant);
     }
 
-    public void delete(Integer id) {
+    public void delete(Integer id) throws CentreNotFoundException {
         centerRepository.deleteById(id);
 
     }
