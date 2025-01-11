@@ -4,6 +4,8 @@ import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -13,8 +15,11 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="t_center")
 public class Center {
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
     private String nom;
     private String adresse;
     private String ville;
@@ -86,12 +91,5 @@ public class Center {
         return this.medecins;
     }
 
-    public void addMedecins(User m) {
-        this.medecins.add(m);
-    }
-
-    public void removeMedecin(Integer userId) {
-        this.medecins.removeIf(m -> m.getId().equals(id));    
-    }
 
 }

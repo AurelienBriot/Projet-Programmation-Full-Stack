@@ -3,86 +3,116 @@ package org.vaccination;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class CenterService {
-    private List<Center> centers = new ArrayList<Center>();
+    @Autowired
+    private CenterRepository centerRepository;
     
     public CenterService() {
-        this.centers.add(new Center(1, "Centre 1", "Rue Jean Lamour", "Vandoeuvre-lès-Nancy", new ArrayList<User>(), new ArrayList<Timeslot>(), new User(1, "test", "test", "mail")));
-        this.centers.add(new Center(2, "Centre 2", "Rue Jean Lamour", "Nancy", new ArrayList<User>(), new ArrayList<Timeslot>(), new User(1, "test", "test", "mail")));
-        this.centers.add(new Center(3, "Centre 3", "Rue Jean Lamodsfdsur", "Nancy", new ArrayList<User>(), new ArrayList<Timeslot>(), new User(1, "test", "test", "mail")));
-        this.centers.add(new Center(4, "Centre 4", "Rue Jean Lamouffr", "Vandoeuvre-lès-Nancy", new ArrayList<User>(), new ArrayList<Timeslot>(), new User(1, "test", "test", "mail")));
 
     }
 
     public List<Center> findAll() throws Exception {
-        return this.centers.stream().toList();
+        return centerRepository.findAll();
     }
 
-    public List<Center> findAllByCity(String ville) throws Exception {
-        return this.centers.stream().filter(c->c.getVille().equals(ville)).toList();
-    }
-
-    public Center findOneById(Integer id) throws Exception {
-        return this.centers.stream()
-        .filter(p->p.getId().equals(id))
-        .findFirst()
-        .orElseThrow(Exception::new);    
-    }
-
-    public void create(Center center) {
-        this.centers.add(center);
-    }
-
-    public void delete(Integer id) {
-        this.centers.removeIf(c->c.getId().equals(id));    
-
-    }
-
-    public void addAdmin(Integer id, User user) {
-        this.centers.stream()
-        .filter(c -> c.getId().equals(id))
-        .findFirst()
-        .ifPresent(c -> c.setAdministrateur(user));
+    public List<Center> findAllByVille(String ville) throws Exception {
+        if(ville == null || ville.isEmpty()) {
+            return centerRepository.findAll();
+        }
+        else {
+            return centerRepository.findAllByVilleLikeIgnoringCase(ville);
+        }
         
     }
 
-    public void deleteAdmin(Integer id) {
-        this.centers.stream()
-        .filter(c -> c.getId().equals(id))
-        .findFirst()
-        .ifPresent(c -> c.setAdministrateur(null));    
+    public Center findOneById(Integer id) throws Exception {
+        return centerRepository.findOneById(id); 
+    }
+
+    public Center create(Center center) {
+        return centerRepository.save(center);
+    }
+
+    public Center update(Integer id, Center centreMaj) throws Exception {
+        Center centreExistant = findOneById(id);
+        if (centreExistant == null) {
+            throw new Exception();
+        }
+
+        if(centreMaj.getNom() != null) {
+            centreExistant.setNom(centreMaj.getNom());
+        }
+
+        if(centreMaj.getAdresse() != null) {
+            centreExistant.setAdresse(centreMaj.getAdresse());
+
+        }
+
+        if(centreMaj.getVille() != null) {
+            centreExistant.setVille(centreMaj.getVille());
+
+        }
+
+        if(centreMaj.getAdministrateur() != null) {
+            centreExistant.setAdministrateur(centreMaj.getAdministrateur());
+        }
+
+        return centerRepository.save(centreExistant);
+    }
+
+    public void delete(Integer id) {
+        centerRepository.deleteById(id);
 
     }
 
-    public void updateAdresse(Integer id, String adresse) {
-        this.centers.stream()
-        .filter(c -> c.getId().equals(id))
-        .findFirst()
-        .ifPresent(c -> c.setAdresse(adresse));
-    }
+    // public void addAdmin(Integer id, User user) {
+    //     this.centers.stream()
+    //     .filter(c -> c.getId().equals(id))
+    //     .findFirst()
+    //     .ifPresent(c -> c.setAdministrateur(user));
+        
+    // }
 
-    public void updateVille(Integer id, String ville) {
-        this.centers.stream()
-        .filter(c -> c.getId().equals(id))
-        .findFirst()
-        .ifPresent(c -> c.setVille(ville));
-    }
+    // public void deleteAdmin(Integer id) {
+    //     this.centers.stream()
+    //     .filter(c -> c.getId().equals(id))
+    //     .findFirst()
+    //     .ifPresent(c -> c.setAdministrateur(null));    
 
-    public void addMedecin(Integer id, User m) {
-        this.centers.stream()
-        .filter(c -> c.getId().equals(id))
-        .findFirst()
-        .ifPresent(c -> c.addMedecins(m));
-    }
+    // }
 
-    public void removeMedecin(Integer id, Integer userId) {
-        this.centers.stream()
-        .filter(c -> c.getId().equals(id))
-        .findFirst()
-        .ifPresent(c -> c.removeMedecin(userId));    
-    }
+    // public void updateAdresse(Integer id, String adresse) {
+    //     this.centers.stream()
+    //     .filter(c -> c.getId().equals(id))
+    //     .findFirst()
+    //     .ifPresent(c -> c.setAdresse(adresse));
+    // }
+
+    // public void updateVille(Integer id, String ville) {
+    //     this.centers.stream()
+    //     .filter(c -> c.getId().equals(id))
+    //     .findFirst()
+    //     .ifPresent(c -> c.setVille(ville));
+    // }
+
+    // public void addMedecin(Integer id, User m) {
+    //     this.centers.stream()
+    //     .filter(c -> c.getId().equals(id))
+    //     .findFirst()
+    //     .ifPresent(c -> c.addMedecins(m));
+    // }
+
+    // public void removeMedecin(Integer id, Integer userId) {
+    //     this.centers.stream()
+    //     .filter(c -> c.getId().equals(id))
+    //     .findFirst()
+    //     .ifPresent(c -> c.removeMedecin(userId));    
+    // }
 
 }
