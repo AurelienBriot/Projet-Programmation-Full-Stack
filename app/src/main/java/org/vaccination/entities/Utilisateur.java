@@ -1,16 +1,19 @@
-package org.vaccination;
-
-import java.util.List;
+package org.vaccination.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="t_user")
-public class User {
+@Table(name="t_utilisateur")
+public class Utilisateur {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String nom;
@@ -21,18 +24,12 @@ public class User {
     private String adresse;
     private String ville;
 
-    @OneToMany(mappedBy = "patient")
-    private List<Timeslot> creneaux;
+    @ManyToOne
+    @JoinColumn(name = "centre_id")
+    private Centre centre;
 
-    public User() {
+    public Utilisateur() {
 
-    }
-
-    public User(Integer id, String nom, String prenom, String email) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
     }
 
     public void setNom(String nom) {
@@ -49,14 +46,6 @@ public class User {
 
     public String getPrenom() {
         return this.prenom;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getRole() {
-        return this.role;
     }
 
     public void setEmail(String email) {
@@ -98,4 +87,21 @@ public class User {
     public Integer getId() {
         return this.id;
     }
+
+    public void setCentre(Centre c) {
+        this.centre = c;
+    }
+
+    public Centre getCentre() {
+        return this.centre;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return this.role;
+    }
+
 }
