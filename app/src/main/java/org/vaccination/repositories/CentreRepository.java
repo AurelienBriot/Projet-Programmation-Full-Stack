@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface CenterRepository extends JpaRepository<Centre, Integer> {
+public interface CentreRepository extends JpaRepository<Centre, Integer> {
     public List<Centre> findAllByVilleLikeIgnoringCase(String ville);
 
     public Centre findOneById(Integer id);

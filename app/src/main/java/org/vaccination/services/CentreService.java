@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vaccination.entities.Centre;
 import org.vaccination.exceptions.CentreNotFoundException;
-import org.vaccination.repositories.CenterRepository;
+import org.vaccination.repositories.CentreRepository;
 
 
 @Service
-public class CenterService {
+public class CentreService {
     @Autowired
-    private CenterRepository centerRepository;
+    private CentreRepository centerRepository;
     
-    public CenterService() {
-
+    public CentreService() {
+        
     }
 
     public List<Centre> findAll() {

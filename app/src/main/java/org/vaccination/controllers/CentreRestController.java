@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.vaccination.entities.Centre;
 import org.vaccination.exceptions.CentreNotFoundException;
-import org.vaccination.services.CenterService;
+import org.vaccination.services.CentreService;
 
 @RestController
 public class CentreRestController {
 
     @Autowired
-    private CenterService centerService;
+    private CentreService centerService;
     
     public CentreRestController() {
 
