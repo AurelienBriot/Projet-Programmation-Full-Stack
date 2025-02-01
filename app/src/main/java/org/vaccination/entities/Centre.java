@@ -22,6 +22,7 @@ public class Centre {
     
     private String nom;
     private String adresse;
+    private String codePostal;
     private String ville;
 
     @OneToMany(mappedBy = "centre")
@@ -54,6 +55,14 @@ public class Centre {
         return this.adresse;
     }
 
+    public void setCodePostal(String code) {
+        this.codePostal = code;
+    }
+
+    public String getCodePostal() {
+        return this.codePostal;
+    }
+    
     public void setVille(String ville) {
         this.ville = ville;
     }

@@ -27,7 +27,7 @@ public class CentreService {
             return centerRepository.findAll();
         }
         else {
-            return centerRepository.findAllByVilleLikeIgnoringCase(ville);
+            return centerRepository.findAllByVilleContainingIgnoringCase(ville);
         }
         
     }
