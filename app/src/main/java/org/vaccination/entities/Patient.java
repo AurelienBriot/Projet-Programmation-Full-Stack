@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,8 +25,8 @@ public class Patient {
 
     private Boolean estVaccine;
 
-    @OneToMany(mappedBy = "patient")
-    private List<Creneau> creneaux;
+    @OneToOne(mappedBy = "patient")
+    private Creneau creneau;
 
     public Patient() {
 
