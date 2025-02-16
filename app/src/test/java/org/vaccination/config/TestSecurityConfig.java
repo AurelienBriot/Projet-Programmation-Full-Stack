@@ -31,9 +31,7 @@ public class TestSecurityConfig {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setLogin("toto");
         utilisateur.setPassword(passwordEncoder.encode("tata"));
-        utilisateur.setId(0l);
         utilisateurRepository.save(utilisateur);
-
         //when
         mockMvc.perform(MockMvcRequestBuilders.get("/api/public/centres")
                         .contentType(MediaType.APPLICATION_JSON)

@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.vaccination.entities.Utilisateur;
 
-public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer> {
+public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
 
     // public List<Utilisateur> findByRole(String role);
 
