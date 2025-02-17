@@ -3,8 +3,6 @@ package org.vaccination.services;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,20 +15,18 @@ import org.vaccination.repositories.UtilisateurRepository;
 @Service
 public class UtilisateurService implements UserDetailsService {
 
-    private static Logger log = LoggerFactory.getLogger(UtilisateurService.class);
-
     @Autowired
     UtilisateurRepository utilisateurRepository;
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        Optional<Utilisateur> res = utilisateurRepository.findByLogin(username);
-        if(res.isPresent()){
-            return new User(res.get().getLogin(),res.get().getPassword(),new ArrayList<>());
-        } 
-        else {
-            throw new UsernameNotFoundException("L'utilisateur n'existe pas");
-        }
+        Utilisateur utilisateur = utilisateurRepository.findByLogin(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));
+
+        return User.withUsername(utilisateur.getLogin())
+                .password(utilisateur.getPassword())
+                .roles(utilisateur.getRole()) // Convertir le rôle unique en tableau
+                .build();
         
     }
 

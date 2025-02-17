@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,30 +28,35 @@ public class CentreRestController {
 
     }
 
-    @GetMapping(path = {"/api/public/centres"})
+    // Récupérer tous les centres (public)
+    @GetMapping(path = {"/api/centres"})
     public List<Centre> getAll(@RequestParam(name = "ville", required = false) String ville) {
         return centerService.findAllByVille(ville);
     }
 
-    @GetMapping(path = "/api/public/centre/{id}")
+    // Récupérer un centre (public)
+    @GetMapping(path = "/api/centre/{id}")
     public Centre getOneById(@PathVariable("id") Integer id) throws CentreNotFoundException {
         return centerService.findOneById(id);
     }
 
-    // Ajouter un centre
-    @PostMapping(path = "/api/super-admin/centre")
+    // Ajouter un centre (superadmin)
+    @PostMapping(path = "/api/centre")
+    @PreAuthorize("hasRole('SUPERADMIN')")
     public Centre create(@RequestBody Centre c) {
         return centerService.create(c);
     }
 
-    // Mettre à jour un centre (nom, ville, adresse)
-    @PutMapping(path = "api/super-admin/centre/{id}")
+    // Mettre à jour un centre (nom, ville, adresse) (superadmin)
+    @PutMapping(path = "api/centre/{id}")
+    @PreAuthorize("hasRole('SUPERADMIN')")
     public Centre updateCentre(@PathVariable("id") Integer id, @RequestBody Centre c) throws CentreNotFoundException {
         return centerService.update(id, c);
     }
     
-    // Supprimer un centre
-    @DeleteMapping(path = "/api/super-admin/centre/{id}")
+    // Supprimer un centre (superadmin)
+    @DeleteMapping(path = "/api/centre/{id}")
+    @PreAuthorize("hasRole('SUPERADMIN')")
     public void delete(@PathVariable("id") Integer id) throws CentreNotFoundException {
         centerService.delete(id);
     }
