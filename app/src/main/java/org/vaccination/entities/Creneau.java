@@ -1,11 +1,14 @@
 package org.vaccination.entities;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,18 +18,15 @@ public class Creneau {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
     @ManyToOne
     @JoinColumn(name = "centre_id") 
     private Centre centre;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    private Integer jour;
-    private Integer mois;
-    private Integer annee;
+    private LocalDate date;
 
     private Integer heure;
     private Integer minute;
@@ -78,28 +78,12 @@ public class Creneau {
         return this.estTermine;
     }
 
-    public Integer getJour() {
-        return jour;
+    public LocalDate getDate() {
+        return date;
     }
     
-    public void setJour(Integer jour) {
-        this.jour = jour;
-    }
-    
-    public Integer getMois() {
-        return mois;
-    }
-    
-    public void setMois(Integer mois) {
-        this.mois = mois;
-    }
-    
-    public Integer getAnnee() {
-        return annee;
-    }
-    
-    public void setAnnee(Integer annee) {
-        this.annee = annee;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
     
     public Integer getHeure() {
