@@ -18,9 +18,7 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/", "/api/public/**").permitAll()
-                .requestMatchers("/api/admin/***").hasAnyRole("ADMIN", "SUPERADMIN")
-				.anyRequest().authenticated()
+				.anyRequest().permitAll()
 			)
 			.formLogin((form) -> form
 				.permitAll()
