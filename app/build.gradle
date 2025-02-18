@@ -22,13 +22,15 @@ dependencies {
     implementation 'org.springframework:spring-core'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
+    testImplementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'com.h2database:h2'
+    
     runtimeOnly 'org.postgresql:postgresql'
 }
-
-
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {

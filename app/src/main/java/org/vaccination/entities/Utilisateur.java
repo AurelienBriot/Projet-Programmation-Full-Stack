@@ -14,10 +14,14 @@ import jakarta.persistence.Table;
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String nom;
     private String prenom;
+
+    private String login;
+    private String password;
+
     private String role;
     private String email;
     private String telephone;
@@ -46,6 +50,22 @@ public class Utilisateur {
 
     public String getPrenom() {
         return this.prenom;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getLogin() {
+        return this.login;
+    }
+
+    public void setPassword(String pass) {
+        this.password = pass;
+    }
+
+    public String getPassword() {
+        return this.password;
     }
 
     public void setEmail(String email) {
@@ -80,11 +100,11 @@ public class Utilisateur {
         return this.ville;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return this.id;
     }
 

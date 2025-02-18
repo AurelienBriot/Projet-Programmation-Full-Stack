@@ -24,55 +24,55 @@ public class UtilisateurRestController {
 
     }
 
-    @GetMapping(path = "/api/super-admin/administrateurs")
-    public List<Utilisateur> findAdministrateurs() {
-        return utilisateurService.findAdministrateurs();
-    }
+    // @GetMapping(path = "/api/super-admin/administrateurs")
+    // public List<Utilisateur> findAdministrateurs() {
+    //     return utilisateurService.findAdministrateurs();
+    // }
 
-    @GetMapping(path = "/api/admin/medecins")
-    public List<Utilisateur> findMedecins() {
-        return utilisateurService.findMedecins();
-    }
+    // @GetMapping(path = "/api/admin/medecins")
+    // public List<Utilisateur> findMedecins() {
+    //     return utilisateurService.findMedecins();
+    // }
 
-    @GetMapping(path = "/api/super-admin/administrateur/{id}")
-    public Utilisateur findOneAdministrateur(@PathVariable(name = "id") Integer id) {
-        return utilisateurService.findOneAdministrateur(id);
-    }
+    // @GetMapping(path = "/api/super-admin/administrateur/{id}")
+    // public Utilisateur findOneAdministrateur(@PathVariable(name = "id") Integer id) {
+    //     return utilisateurService.findOneAdministrateur(id);
+    // }
 
-    @GetMapping(path = "/api/admin/medecin/{id}")
-    public Utilisateur findOneMedecin(@PathVariable(name = "id") Integer id) {
-        return utilisateurService.findOneMedecin(id);
-    }
+    // @GetMapping(path = "/api/admin/medecin/{id}")
+    // public Utilisateur findOneMedecin(@PathVariable(name = "id") Integer id) {
+    //     return utilisateurService.findOneMedecin(id);
+    // }
 
-    @PostMapping(path = "/api/super-admin/administrateur")
-    public Utilisateur createAdministrateur(@RequestBody Utilisateur utilisateur) {
-        return utilisateurService.createAdministrateur(utilisateur);
-    }
+    // @PostMapping(path = "/api/super-admin/administrateur")
+    // public Utilisateur createAdministrateur(@RequestBody Utilisateur utilisateur) {
+    //     return utilisateurService.createAdministrateur(utilisateur);
+    // }
 
-    @PostMapping(path = "/api/admin/medecin")
-    public Utilisateur createMedecin(@RequestBody Utilisateur utilisateur) {
-        return utilisateurService.createMedecin(utilisateur);
-    }
+    // @PostMapping(path = "/api/admin/medecin")
+    // public Utilisateur createMedecin(@RequestBody Utilisateur utilisateur) {
+    //     return utilisateurService.createMedecin(utilisateur);
+    // }
 
-    @PutMapping(path = "/api/super-admin/administrateur/{id}")
-    public Utilisateur updateAdministrateur(@PathVariable(name = "id") Integer id, @RequestBody Utilisateur utilisateur) {
-        return utilisateurService.updateAdministrateur(id, utilisateur);
-    }
+    // @PutMapping(path = "/api/super-admin/administrateur/{id}")
+    // public Utilisateur updateAdministrateur(@PathVariable(name = "id") Integer id, @RequestBody Utilisateur utilisateur) {
+    //     return utilisateurService.updateAdministrateur(id, utilisateur);
+    // }
 
-    @PutMapping(path = "/api/admin/medecin/{id}")
-    public Utilisateur updateMedecin(@PathVariable(name = "id") Integer id, @RequestBody Utilisateur utilisateur) {
-        return utilisateurService.updateMedecin(id, utilisateur);
-    }
+    // @PutMapping(path = "/api/admin/medecin/{id}")
+    // public Utilisateur updateMedecin(@PathVariable(name = "id") Integer id, @RequestBody Utilisateur utilisateur) {
+    //     return utilisateurService.updateMedecin(id, utilisateur);
+    // }
     
-    @DeleteMapping(path = "/api/super-admin/administrateur/{id}")
-    public void deleteAdministrateur(@PathVariable(name = "id") Integer id) {
-        utilisateurService.deleteAdministrateur(id);
-    }
+    // @DeleteMapping(path = "/api/super-admin/administrateur/{id}")
+    // public void deleteAdministrateur(@PathVariable(name = "id") Integer id) {
+    //     utilisateurService.deleteAdministrateur(id);
+    // }
 
-    @DeleteMapping(path = "/api/super-admin/medecin/{id}")
-    public void deleteMedecin(@PathVariable(name = "id") Integer id) {
-        utilisateurService.deleteMedecin(id);
-    }
+    // @DeleteMapping(path = "/api/super-admin/medecin/{id}")
+    // public void deleteMedecin(@PathVariable(name = "id") Integer id) {
+    //     utilisateurService.deleteMedecin(id);
+    // }
 
 
     
