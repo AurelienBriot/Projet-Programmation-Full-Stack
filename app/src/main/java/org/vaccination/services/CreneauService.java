@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vaccination.entities.Centre;
 import org.vaccination.entities.Creneau;
+import org.vaccination.entities.Patient;
 import org.vaccination.exceptions.CreneauNotFoundException;
 import org.vaccination.repositories.CreneauRepository;
 
@@ -24,8 +25,8 @@ public class CreneauService {
         return creneauRepository.findAll();
     } 
 
-    public List<Creneau> findAllByCentreAndDate(Centre centre, LocalDate date) throws CreneauNotFoundException {
-        return creneauRepository.findAllByCentreAndDate(centre, date);
+    public List<Creneau> findAllByCentreAndDateAndEstReserve(Centre centre, LocalDate date, Boolean estReserve) throws CreneauNotFoundException {
+        return creneauRepository.findAllByCentreAndDateAndEstReserve(centre, date, estReserve);
     }
 
     public Creneau findOneById(Integer id) throws CreneauNotFoundException {
@@ -43,6 +44,13 @@ public class CreneauService {
     public Creneau validerVaccination(Integer id) throws CreneauNotFoundException {
         Creneau creneau = creneauRepository.findOneById(id);
         creneau.setEstTermine(true);
+        return creneauRepository.save(creneau);
+    }
+
+    public Creneau updateCreneauPatient(Integer id, Patient p) throws CreneauNotFoundException {
+        Creneau creneau = creneauRepository.findOneById(id);
+        creneau.setPatient(p);
+        creneau.setEstReserve(true);
         return creneauRepository.save(creneau);
     }
 }

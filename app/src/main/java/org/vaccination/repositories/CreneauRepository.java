@@ -11,4 +11,5 @@ import org.vaccination.entities.Creneau;
 public interface CreneauRepository extends JpaRepository<Creneau, Integer> {
     public Creneau findOneById(Integer id);
     public List<Creneau> findAllByCentreAndDate(Centre c, LocalDate d);
+    public List<Creneau> findAllByCentreAndDateAndEstReserve(Centre centre, LocalDate date, Boolean estReserve);
 }

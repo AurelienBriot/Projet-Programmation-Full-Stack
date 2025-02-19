@@ -20,16 +20,16 @@ public class App {
         SpringApplication.run(App.class, args);
     }
 
-    // Ajouter un utilisateur admin dans la base
-    @Bean
-        CommandLineRunner init (UtilisateurRepository utilisateurRepository){
-            return args -> {
-                Utilisateur admin = new Utilisateur();
-                admin.setLogin("admin");
-                admin.setPassword(new BCryptPasswordEncoder().encode("admin"));
-                admin.setRole("ADMIN");
-                utilisateurRepository.save(admin);
-            };
-        }
+    // // Ajouter un utilisateur admin dans la base
+    // @Bean
+    //     CommandLineRunner init (UtilisateurRepository utilisateurRepository){
+    //         return args -> {
+    //             Utilisateur admin = new Utilisateur();
+    //             admin.setLogin("admin");
+    //             admin.setPassword(new BCryptPasswordEncoder().encode("admin"));
+    //             admin.setRole("ADMIN");
+    //             utilisateurRepository.save(admin);
+    //         };
+    //     }
 
 }
