@@ -60,6 +60,10 @@ public class CentreService {
 
         }
 
+        if(centreMaj.getCodePostal() != null) {
+            centreExistant.setCodePostal(centreMaj.getCodePostal());
+        }
+
         if(centreMaj.getAdministrateur() != null) {
             centreExistant.setAdministrateur(centreMaj.getAdministrateur());
         }
