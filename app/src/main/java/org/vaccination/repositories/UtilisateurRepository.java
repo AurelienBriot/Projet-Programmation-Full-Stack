@@ -14,4 +14,14 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> 
 
     public Optional<Utilisateur> findByLogin(String login);
 
+    public List<Utilisateur> findByRole(String role);
+
+    public List<Utilisateur> findByNomAndRole(String nom, String string);
+
+    public Utilisateur findOneByIdAndRole(Integer id, String string);
+
+    public Utilisateur findOneById(Integer id);
+
+    public void deleteById(Integer id);
+
 }
