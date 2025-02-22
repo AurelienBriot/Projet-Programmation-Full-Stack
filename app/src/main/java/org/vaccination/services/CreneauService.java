@@ -53,4 +53,8 @@ public class CreneauService {
         creneau.setEstReserve(true);
         return creneauRepository.save(creneau);
     }
+
+    public List<Creneau> findAllByEstReserve(Boolean estReserve) {
+        return creneauRepository.findAllByEstReserve(estReserve);
+    }
 }

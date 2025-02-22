@@ -78,10 +78,6 @@ public class UtilisateurService implements UserDetailsService {
             utilisateurExistant.setTelephone(utilisateur.getTelephone());
         }
 
-        if (utilisateur.getCentre() != null) {
-            utilisateurExistant.setCentre(utilisateur.getCentre());
-        }
-
         if (utilisateur.getLogin() != null) {
             utilisateurExistant.setLogin(utilisateur.getLogin());
         }

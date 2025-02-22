@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,10 +40,17 @@ public class CreneauRestController {
     }
 
     // Récupérer tous les créneaux (medecin)
-    @GetMapping(path = {"/api/touslescreneaux"})
+    @GetMapping(path = {"/api/tous-les-creneaux"})
     @PreAuthorize("hasAnyRole('SUPERADMIN', 'ADMIN', 'MEDECIN')")
     public List<Creneau> findAll() {
         return this.creneauService.findAll();
+    }
+
+    // Récupérer tous les créneaux réservés (medecin)
+    @GetMapping(path = {"/api/creneaux-reserves"})
+    @PreAuthorize("hasAnyRole('SUPERADMIN', 'ADMIN', 'MEDECIN')")
+    public List<Creneau> findAllByEstReserve(@RequestParam(name = "estReserve", required = true) Boolean estReserve) {
+        return this.creneauService.findAllByEstReserve(estReserve);
     }
 
     // Récupérer tous les créneaux par ville et date (public)
@@ -80,6 +88,7 @@ public class CreneauRestController {
     }
 
     // Créer un créneau (admin)
+    @Transactional
     @PostMapping(path = "/api/creneau")
     @PreAuthorize("hasAnyRole('SUPERADMIN', 'ADMIN')")
     public Creneau createCreneau(@RequestBody Creneau creneau) {
@@ -87,9 +96,10 @@ public class CreneauRestController {
     }
 
     // Supprimer un créneau (admin)
-    @DeleteMapping(path = "/api/creneau")
+    @Transactional
+    @DeleteMapping(path = "/api/creneau/{id}")
     @PreAuthorize("hasAnyRole('SUPERADMIN', 'ADMIN')")
-    public void deletCreneau(Integer id) throws CreneauNotFoundException {
+    public void deleteCreneau(@PathVariable("id") Integer id) throws CreneauNotFoundException {
         creneauService.delete(id);
     }
 
