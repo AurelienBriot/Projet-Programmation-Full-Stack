@@ -52,21 +52,21 @@ public class UtilisateurRestController {
     // Récupérer un superadmin par id (superadmin)
     @GetMapping(path = "/api/super-admin/{id}")
     @PreAuthorize("hasRole('SUPERADMIN')")
-    public Utilisateur findSuperAdminById(@RequestParam(name = "id") Integer id) throws UtilisateurNotFoundException {
+    public Utilisateur findSuperAdminById(@PathVariable(name = "id") Integer id) throws UtilisateurNotFoundException {
         return utilisateurService.findOneByIdAndRole(id, "SUPERADMIN");
     }
 
      // Récupérer un admin par id (superadmin)
     @GetMapping(path = "/api/admin/{id}")
     @PreAuthorize("hasRole('SUPERADMIN')")
-    public Utilisateur findAdminById(@RequestParam(name = "id") Integer id) throws UtilisateurNotFoundException {
+    public Utilisateur findAdminById(@PathVariable(name = "id") Integer id) throws UtilisateurNotFoundException {
         return utilisateurService.findOneByIdAndRole(id, "ADMIN");
     }
 
     // Récupérer un medecin par id (superadmin, admin)
     @GetMapping(path = "/api/medecin/{id}")
     @PreAuthorize("hasAnyRole('SUPERADMIN', 'ADMIN')")
-    public Utilisateur findMedecinById(@RequestParam(name = "id") Integer id) throws UtilisateurNotFoundException {
+    public Utilisateur findMedecinById(@PathVariable(name = "id") Integer id) throws UtilisateurNotFoundException {
         return utilisateurService.findOneByIdAndRole(id, "MEDECIN");
     }
 
