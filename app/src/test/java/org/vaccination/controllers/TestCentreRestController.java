@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -43,7 +44,7 @@ public class TestCentreRestController {
     
         Mockito.when(centreService.findOneById(1)).thenReturn(centreMock);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/public/centre/1").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/centre/1").contentType(MediaType.APPLICATION_JSON))
         .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
         .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
         .andExpect(MockMvcResultMatchers.jsonPath("$.ville").value("Nancy"));
@@ -67,7 +68,7 @@ public class TestCentreRestController {
     
         Mockito.when(centreService.findAllByVille(null)).thenReturn(centresMock);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/public/centres").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/centres").contentType(MediaType.APPLICATION_JSON))
         .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
         .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(2))
         .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(1))
@@ -77,8 +78,9 @@ public class TestCentreRestController {
     }
 
     @Test
+    @WithMockUser(username = "toto", password = "tata", roles = "SUPERADMIN")
     void itShouldAddACentre() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/super-admin/centre").content("""
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/centre").content("""
                 {
                    "ville": "Vandoeuvre",
                    "adresse": "2 rue Jean Lamour",
@@ -93,8 +95,9 @@ public class TestCentreRestController {
     }
 
     @Test
+    @WithMockUser(username = "toto", password = "tata", roles = "SUPERADMIN")
     void itShouldUpdateACentre() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.put("/api/super-admin/centre/1").content("""
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/centre/1").content("""
                 {   
                     "id": 1,
                     "ville": "Vandoeuvre"
@@ -108,6 +111,7 @@ public class TestCentreRestController {
     }
 
     @Test
+    @WithMockUser(username = "toto", password = "tata", roles = "SUPERADMIN")
     void itShouldDeleteACentre() throws Exception {
         Centre centreMock = new Centre();
         centreMock.setId(1);
@@ -115,7 +119,7 @@ public class TestCentreRestController {
     
         Mockito.when(centreService.findOneById(1)).thenReturn(centreMock);
         
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/super-admin/centre/1").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/centre/1").contentType(MediaType.APPLICATION_JSON))
         .andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
 
         Mockito.verify(centreService).delete(eq(1));
