@@ -73,7 +73,7 @@ public class UtilisateurRestController {
     // Créer un superadmin (superadmin)
     @PostMapping(path = "/api/super-admin")
     @PreAuthorize("hasRole('SUPERADMIN')")
-    public Utilisateur createSuperAdmin(@RequestBody Utilisateur utilisateur) {
+    public Utilisateur createSuperAdmin(@RequestBody Utilisateur utilisateur) throws IllegalArgumentException {
         if (!utilisateur.getRole().equals("SUPERADMIN")) {
             throw new IllegalArgumentException("L'utilisateur créé doit être un super admin");
         }
@@ -83,7 +83,7 @@ public class UtilisateurRestController {
     // Créer un admin (superadmin)
     @PostMapping(path = "/api/admin")
     @PreAuthorize("hasAnyRole('SUPERADMIN')")
-    public Utilisateur createAdmin(@RequestBody Utilisateur utilisateur) {
+    public Utilisateur createAdmin(@RequestBody Utilisateur utilisateur) throws IllegalArgumentException {
         if (!utilisateur.getRole().equals("ADMIN")) {
             throw new IllegalArgumentException("L'utilisateur créé doit être un admin");
         }
@@ -93,7 +93,7 @@ public class UtilisateurRestController {
     // Créer un médecin (superadmin, admin)
     @PostMapping(path = "/api/medecin")
     @PreAuthorize("hasAnyRole('SUPERADMIN', 'ADMIN')")
-    public Utilisateur createMedecin(@RequestBody Utilisateur utilisateur) {
+    public Utilisateur createMedecin(@RequestBody Utilisateur utilisateur) throws IllegalArgumentException {
         if (!utilisateur.getRole().equals("MEDECIN")) {
             throw new IllegalArgumentException("L'utilisateur créé doit être un médecin");
         }
@@ -103,7 +103,7 @@ public class UtilisateurRestController {
     // Mettre à jour un superadmin (superadmin)
     @PutMapping(path = "/api/super-admin/{id}")
     @PreAuthorize("hasRole('SUPERADMIN')")
-    public Utilisateur updateSuperAdmin(@PathVariable(name = "id") Integer id, @RequestBody Utilisateur utilisateur) throws UtilisateurNotFoundException {
+    public Utilisateur updateSuperAdmin(@PathVariable(name = "id") Integer id, @RequestBody Utilisateur utilisateur) throws UtilisateurNotFoundException, IllegalArgumentException {
         if (!utilisateur.getRole().equals("SUPERADMIN")) {
             throw new IllegalArgumentException("L'utilisateur mis à jour doit être un super admin");
         }
@@ -113,7 +113,7 @@ public class UtilisateurRestController {
     // Mettre à jour un admin (superadmin)
     @PutMapping(path = "/api/admin/{id}")
     @PreAuthorize("hasRole('SUPERADMIN')")
-    public Utilisateur updateAdmin(@PathVariable(name = "id") Integer id, @RequestBody Utilisateur utilisateur) throws UtilisateurNotFoundException {
+    public Utilisateur updateAdmin(@PathVariable(name = "id") Integer id, @RequestBody Utilisateur utilisateur) throws UtilisateurNotFoundException, IllegalArgumentException {
         if (!utilisateur.getRole().equals("ADMIN")) {
             throw new IllegalArgumentException("L'utilisateur mis à jour doit être un admin");
         }
@@ -123,7 +123,7 @@ public class UtilisateurRestController {
     // Mettre à jour un médecin (superadmin, admin)
     @PutMapping(path = "/api/medecin/{id}")
     @PreAuthorize("hasAnyRole('SUPERADMIN', 'ADMIN')")
-    public Utilisateur updateMedecin(@PathVariable(name = "id") Integer id, @RequestBody Utilisateur utilisateur) throws UtilisateurNotFoundException {
+    public Utilisateur updateMedecin(@PathVariable(name = "id") Integer id, @RequestBody Utilisateur utilisateur) throws UtilisateurNotFoundException, IllegalArgumentException {
         if (!utilisateur.getRole().equals("MEDECIN")) {
             throw new IllegalArgumentException("L'utilisateur mis à jour doit être un médecin");
         }
