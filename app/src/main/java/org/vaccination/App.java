@@ -21,15 +21,15 @@ public class App {
     }
 
     // Ajouter un utilisateur admin dans la base
-    @Bean
-        CommandLineRunner init (UtilisateurRepository utilisateurRepository){
-            return args -> {
-                Utilisateur admin = new Utilisateur();
-                admin.setLogin("admin");
-                admin.setPassword(new BCryptPasswordEncoder().encode("admin"));
-                admin.setRole("ADMIN");
-                utilisateurRepository.save(admin);
-            };
-        }
+    // @Bean
+    //     CommandLineRunner init (UtilisateurRepository utilisateurRepository){
+    //         return args -> {
+    //             Utilisateur admin = new Utilisateur();
+    //             admin.setLogin("admin");
+    //             admin.setPassword(new BCryptPasswordEncoder().encode("admin"));
+    //             admin.setRole("SUPERADMIN");
+    //             utilisateurRepository.save(admin);
+    //         };
+    //     }
 
 }

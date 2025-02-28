@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -25,7 +27,12 @@ public class Centre {
     private String codePostal;
     private String ville;
 
-    @OneToMany(mappedBy = "centre")
+    @OneToMany()
+    @JoinTable(
+        name = "t_centre_medecins",
+        joinColumns = @JoinColumn(name = "centre_id"),
+        inverseJoinColumns = @JoinColumn(name = "medecin_id")
+    )
     private List<Utilisateur> medecins;
 
     @JsonIgnoreProperties("creneaux")
@@ -33,6 +40,7 @@ public class Centre {
     private List<Creneau> creneaux;
 
     @OneToOne
+    @JoinColumn(name = "administrateur_id", unique = true)
     private Utilisateur adminstrateur;
     
     public Centre() {

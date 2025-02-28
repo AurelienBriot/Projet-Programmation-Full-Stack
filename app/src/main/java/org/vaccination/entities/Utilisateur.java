@@ -1,12 +1,14 @@
 package org.vaccination.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,10 +29,6 @@ public class Utilisateur {
     private String telephone;
     private String adresse;
     private String ville;
-
-    @ManyToOne
-    @JoinColumn(name = "centre_id")
-    private Centre centre;
 
     public Utilisateur() {
 
@@ -106,14 +104,6 @@ public class Utilisateur {
 
     public Long getId() {
         return this.id;
-    }
-
-    public void setCentre(Centre c) {
-        this.centre = c;
-    }
-
-    public Centre getCentre() {
-        return this.centre;
     }
 
     public void setRole(String role) {

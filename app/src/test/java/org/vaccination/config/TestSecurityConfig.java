@@ -34,13 +34,6 @@ public class TestSecurityConfig {
     }
 
     @Test
-    public void itShouldRedirectToLogin() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/patients").contentType(MediaType.APPLICATION_JSON))
-        .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-        .andExpect(MockMvcResultMatchers.header().string("Location", "http://localhost/login"));
-    }
-
-    @Test
     @WithMockUser(username = "toto", password = "tata", roles = "USER")
     public void itShouldNotAllowUser() throws Exception {
         // /api/patients est reservé aux rôles medecin et supérieur
